@@ -29,7 +29,7 @@ async function startServer() {
 
 
     const server = http.createServer(async (req, res) => {
-        if (req.method === 'GET' && req.headers['content-type'] === 'text/plain') {
+        if (req.method === 'GET') {
 
             req.on('end', async () => {
                 try {
