@@ -13,6 +13,7 @@ async function startServer() {
 
     // Create a collection within the vector DB.
     // This is a mandatory step.
+
     const collection = await client.getOrCreateCollection({
         name: "my_collection",
         embeddingFunction: embedder
@@ -28,26 +29,22 @@ async function startServer() {
                           });
 
 
+    // Now let's query the DB!
+    // We'll just print out the result to the console so we can see that the
+    // database and embedding model are working.
+
+    // `queryTexts` is an array of query text.
+    // `nResults` is the number of closest results chromadb should return.
+
+    const results = await collection.query({
+        queryTexts: ["Why can nobody hear you scream in space?"],
+        nResults: 3,
+    });
+    console.log(results);
+
     const server = http.createServer(async (req, res) => {
 
-        console.log(req.method);
-
-        if (req.method === 'GET') {
-
-            req.on('end', async () => {
-                try {
-                    const results = await collection.query({
-                        queryTexts: ["Why can nobody hear you scream in space?"],
-                        nResults: 3,
-                    });
-                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify(results));
-                } catch (error) {
-                    res.writeHead(500, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify({ error: error.message }));
-                }
-            });
-        } else if (req.method === 'POST' && req.headers['content-type'] === 'text/plain') {
+        if (req.method === 'POST' && req.headers['content-type'] === 'text/plain') {
 
             // Do something here.
 
