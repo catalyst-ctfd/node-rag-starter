@@ -23,7 +23,7 @@ async function startServer() {
     // `ids` is an array of unique IDs for each document.
     // For our simple purposes, we can use random UUIDs as the `ids`.
 
-    await collection.add ({ documents: ["In space, nobody can hear you scream because space is a vacuum, meaning it has no air or other medium to carry sound waves. Sound waves require a medium like air, water, or solid objects to travel through. In the vacuum of space, there is no such medium, so sound cannot propagate. As a result, any sound you make, including a scream, would not be heard by anyone else." }
+    await collection.add ({ documents: ["In space, nobody can hear you scream because space is a vacuum, meaning it has no air or other medium to carry sound waves. Sound waves require a medium like air, water, or solid objects to travel through. In the vacuum of space, there is no such medium, so sound cannot propagate. As a result, any sound you make, including a scream, would not be heard by anyone else."],
                             ids: [uuidv4()],
                           });
 
