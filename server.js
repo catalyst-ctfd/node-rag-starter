@@ -29,6 +29,9 @@ async function startServer() {
 
 
     const server = http.createServer(async (req, res) => {
+
+        console.log(req.method);
+
         if (req.method === 'GET') {
 
             req.on('end', async () => {
